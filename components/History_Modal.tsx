@@ -3,7 +3,7 @@ import { Button, Modal } from "react-daisyui";
 import { FaTimes, FaTrash } from "react-icons/fa";
 import { MdOutlineHistory } from "react-icons/md";
 import styles from "./dashboard.module.css";
-import { Library } from "@/app/dashboard/page";
+import { Library } from "@/util/constants";
 interface ConversionHistoryItem {
   from: Library;
   to: Library;
