@@ -11,6 +11,7 @@ import Image from "next/image";
 import { TbSwitch } from "react-icons/tb";
 import InfoModal from "@/components/InfoModal";
 import HistoryModal from "@/components/History_Modal";
+import { MdErrorOutline } from "react-icons/md";
 
 export const LIBRARIES = [
   "Flutter",
@@ -156,17 +157,17 @@ const App: React.FC = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="flex items-center justify-center mb-4 sm:mb-0">
             <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
-            <h1 className="text-2xl sm:text-3xl font-bold text-blue-400 mr-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-blue-400">
               CompSwitch
             </h1>
+            <Button color="ghost" size="sm" onClick={() => setShowInfo(true)}>
+              <FaInfoCircle />
+            </Button>
+            <p className="text-sm text-gray-400">v{version}</p>
           </div>
           <div className="flex items-center gap-2">
             <Button color="secondary" onClick={() => setShowHistory(true)}>
               <FaHistory />
-            </Button>
-            <p className="text-sm text-gray-400">v{version}</p>
-            <Button color="ghost" size="sm" onClick={() => setShowInfo(true)}>
-              <FaInfoCircle />
             </Button>
           </div>
         </div>
@@ -214,7 +215,7 @@ const App: React.FC = () => {
         <div className="form-control w-full">
           <textarea
             className="textarea textarea-bordered bg-gray-700 text-white h-32 sm:h-48"
-            placeholder="Enter your code here..."
+            placeholder="Enter your code here"
             value={inputCode}
             onChange={(e) => setInputCode(e.target.value)}
           ></textarea>
@@ -223,7 +224,12 @@ const App: React.FC = () => {
         <div
           className={`flex ${error ? "justify-between" : "justify-end"} gap-2`}
         >
-          {error && <div className="text-red-500 font-bold mt-4">{error}</div>}
+          {error && (
+            <div className="text-red-500 mt-4 flex gap-2 items-center justify-center ">
+              <MdErrorOutline />
+              {error}
+            </div>
+          )}
           <Button color="primary" onClick={handleSubmit} disabled={isLoading}>
             {!isLoading && <TbSwitch />}
             {isLoading ? <Loading color="accent" /> : "Convert"}

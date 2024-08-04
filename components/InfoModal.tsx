@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-daisyui";
 import { FaTimes } from "react-icons/fa";
-import FeedbackModal from "./FeedbackModal";
 import ChangelogModal from "./ChangelogModal";
 import Image from "next/image";
+import Link from "next/link";
 
 interface InfoModalProps {
   showInfo: boolean;
@@ -16,7 +16,6 @@ const InfoModal: React.FC<InfoModalProps> = ({
   setShowInfo,
   version,
 }) => {
-  const [showFeedback, setShowFeedback] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
 
   return (
@@ -51,20 +50,17 @@ const InfoModal: React.FC<InfoModalProps> = ({
             >
               Changelog
             </button>
-            <button
+            <Link
+              href="https://insigh.to/b/compswitch"
               className="text-blue-400 hover:text-blue-500"
-              onClick={() => setShowFeedback(true)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Feedback
-            </button>
+            </Link>
           </div>
         </Modal.Body>
       </Modal>
-
-      <FeedbackModal
-        showFeedback={showFeedback}
-        setShowFeedback={setShowFeedback}
-      />
       <ChangelogModal
         showChangelog={showChangelog}
         setShowChangelog={setShowChangelog}

@@ -1,7 +1,9 @@
+import { changelogList } from "@/util/changelog";
 import React from "react";
 import { Button, Modal } from "react-daisyui";
 import { FaTimes } from "react-icons/fa";
 import { MdHistoryToggleOff } from "react-icons/md";
+import ChangelogTile from "./ChangelogTile";
 
 interface ChangelogModalProps {
   showChangelog: boolean;
@@ -24,18 +26,16 @@ const ChangelogModal: React.FC<ChangelogModalProps> = ({
         </Button>
       </Modal.Header>
       <Modal.Body>
-        <div className="flex justify-between items-center">
-          <h3 className="font-bold">Version 1.0</h3>
-          <h3>8/10/2024</h3>
+        <div className="space-y-8">
+          {changelogList.versions.map((versionInfo, index) => (
+            <ChangelogTile
+              key={index}
+              version={versionInfo.version}
+              date={versionInfo.date}
+              changes={versionInfo.changes}
+            />
+          ))}
         </div>
-        <ul className="list-disc list-inside">
-          <li>Initial release of CompSwitch</li>
-          <li>
-            Support for converting between Flutter, React Native, React, Vue,
-            Angular, and Svelte
-          </li>
-          <li>Conversion history feature</li>
-        </ul>
       </Modal.Body>
     </Modal>
   );
