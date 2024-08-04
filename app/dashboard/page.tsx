@@ -12,17 +12,7 @@ import { TbSwitch } from "react-icons/tb";
 import InfoModal from "@/components/InfoModal";
 import HistoryModal from "@/components/History_Modal";
 import { MdErrorOutline } from "react-icons/md";
-
-export const LIBRARIES = [
-  "Flutter",
-  "React Native",
-  "React",
-  "Vue",
-  "Angular",
-  "Svelte",
-] as const;
-
-export type Library = (typeof LIBRARIES)[number];
+import { LIBRARIES, Library } from "@/util/constants";
 
 export interface ConversionHistoryItem {
   from: Library;
