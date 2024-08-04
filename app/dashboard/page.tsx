@@ -9,10 +9,10 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import { TbSwitch } from "react-icons/tb";
-import InfoModal from "@/components/InfoModal";
-import HistoryModal from "@/components/History_Modal";
 import { MdErrorOutline } from "react-icons/md";
 import { LIBRARIES, Library } from "@/util/constants";
+import HistoryModal from "@/components/dashboard/History_Modal";
+import InfoModal from "@/components/dashboard/InfoModal";
 
 export interface ConversionHistoryItem {
   from: Library;
