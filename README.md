@@ -1,6 +1,6 @@
 # CompSwitch
 
-CompSwitch is a React application designed to convert code snippets between different libraries. Currently, it supports converting code between Flutter, React Native, and React. Leveraging Google's Generative AI, this tool simplifies the process of translating code between these frameworks with ease.
+CompSwitch is designed to convert code snippets between different libraries. Currently, it supports converting code between Flutter, React Native, React, Vue, Angular, and Svelte. Leveraging OpenAI's ChatGPT, this tool simplifies the process of translating code between these frameworks with ease.
 
 ## Features
 
@@ -14,27 +14,29 @@ CompSwitch is a React application designed to convert code snippets between diff
 
 - [Node.js](https://nodejs.org/) (v16 or later)
 - [npm](https://www.npmjs.com/) (v8 or later)
+
 ### Getting Started
 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/ziadh/CompSwitch.git
-   cd CompSwitch
+   git clone https://github.com/ziadh/Comp_Switch.git
+   cd Comp_Switch
    ```
+
 2. **Install Dependencies**
 
    ```bash
    npm install
    ```
+
 3. **Set Up Environment Variables**
-Create a .env file in the root directory and add your Google Generative AI API key:
-
-
+   Create a .env file in the root directory and add your OpenAI API key:
 
    ```bash
-   VITE_GEMINI_KEY=your_google_generative_ai_api_key
+   NEXT_OPENAI_API_KEY=your_openai_ai_api_key
    ```
+
 4. **Start the Development Server**
 
    ```bash
@@ -42,6 +44,7 @@ Create a .env file in the root directory and add your Google Generative AI API k
    ```
 
 The app will be running on http://localhost:3000.
+
 ## Usage
 
 1. **Select Libraries**
@@ -60,12 +63,6 @@ The app will be running on http://localhost:3000.
 
    - The converted code will be displayed in a read-only textarea. Click the copy button to copy the code to your clipboard.
 
-## Libraries Used
-
-- **React**: JavaScript library for building user interfaces.
-- **@google/generative-ai**: Google's API for generative AI models.
-- **react-daisyui**: UI components library for a consistent and modern look.
-- **react-icons**: A collection of popular icons to enhance the UI.
 
 ## Contributing
 
@@ -77,10 +74,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or support, open an issue. 
+For any questions or support, open an issue.
 
 ---
 
 Happy coding! 🚀
-
-
