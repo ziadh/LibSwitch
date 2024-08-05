@@ -51,6 +51,14 @@ const InfoModal: React.FC<InfoModalProps> = ({
               Changelog
             </button>
             <Link
+              href="https://github.com/ziadh/Comp_switch"
+              className="text-blue-400 hover:text-blue-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </Link>
+            <Link
               href="https://insigh.to/b/compswitch"
               className="text-blue-400 hover:text-blue-500"
               target="_blank"
