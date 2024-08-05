@@ -14,6 +14,7 @@ import { TbSwitch } from "react-icons/tb";
 import { MdErrorOutline } from "react-icons/md";
 import { LIBRARIES, Library } from "@/util/constants";
 import { useEffect, useState } from "react";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 export interface ConversionHistoryItem {
   from: Library;
@@ -68,7 +69,7 @@ export default function Home() {
     }
 
     if (fromLibrary === toLibrary) {
-      setError("Please select different libraries to convert.");
+      setError("Libraries cannot be the same.");
       return;
     }
 
@@ -157,13 +158,26 @@ export default function Home() {
             <p className="text-sm text-gray-400">v{version}</p>
           </div>
           <div className="flex items-center gap-2">
+            {outputCode && (
+              <Button
+                color="error"
+                onClick={() => {
+                  setInputCode("");
+                  setOutputCode("");
+                  setError("");
+                }}
+              >
+                <FaDeleteLeft />
+                Clear All
+              </Button>
+            )}
             <Button color="secondary" onClick={() => setShowHistory(true)}>
               <FaHistory />
             </Button>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex sm:flex-row gap-4">
           <div className="form-control w-full sm:w-1/3">
             <label className="label">
               <span className="label-text font-semibold text-gray-300 text-lg">
@@ -221,6 +235,7 @@ export default function Home() {
               {error}
             </div>
           )}
+
           <Button color="primary" onClick={handleSubmit} disabled={isLoading}>
             {!isLoading && <TbSwitch />}
             {isLoading ? <Loading color="accent" /> : "Convert"}

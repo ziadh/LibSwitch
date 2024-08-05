@@ -35,8 +35,9 @@ const InfoModal: React.FC<InfoModalProps> = ({
         </Modal.Header>
         <Modal.Body>
           <p>
-            CompSwitch is a tool for converting code between different libraries
-            and frameworks. It uses AI to perform the conversions.
+            CompSwitch is an open-source tool for converting code between
+            different libraries and frameworks. It uses AI to perform the
+            conversions.
           </p>
           <p className="mt-2">
             Please note that while the AI strives for accuracy, the converted
