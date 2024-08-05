@@ -66,7 +66,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   return (
     <pre
       ref={preRef}
-      className="flex bg-gray-700 text-gray-100 p-5 m-0 overflow-x-auto font-mono leading-normal"
+      className="flex bg-gray-700 text-gray-100 p-5 m-0 overflow-x-auto font-mono leading-normal rounded-xl"
     >
       <div
         className={`flex flex-col mr-4 select-none text-gray-500 text-right`}
