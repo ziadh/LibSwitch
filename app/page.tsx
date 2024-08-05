@@ -15,6 +15,8 @@ import { MdErrorOutline } from "react-icons/md";
 import { LIBRARIES, Library } from "@/util/constants";
 import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { Editor } from "ace-builds";
+import CodeEditor from "@/components/CodeEditor";
 
 export interface ConversionHistoryItem {
   from: Library;
@@ -144,8 +146,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center bg-gray-900 p-4 text-white h-screen overflow-y-auto">
-      <div className="flex flex-col gap-4 bg-gray-800 shadow-lg p-4 sm:p-6 rounded-lg w-full sm:w-4/5 lg:w-3/5">
+    <div className="flex flex-col min-h-screen bg-gray-900 p-4 text-white overflow-y-auto">
+      <div className="flex flex-col gap-4 bg-gray-800 shadow-lg p-4 sm:p-6 rounded-lg w-full sm:w-4/5 lg:w-3/5 mx-auto my-4 max-h-[90vh] overflow-y-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="flex items-center justify-center mb-4 sm:mb-0">
             <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
@@ -218,14 +220,11 @@ export default function Home() {
         </div>
 
         <div className="form-control w-full">
-          <textarea
-            className="textarea textarea-bordered bg-gray-700 text-white h-32 sm:h-48"
-            placeholder="Enter your code here"
-            value={inputCode}
-            onChange={(e) => setInputCode(e.target.value)}
-          ></textarea>
+          <CodeEditor
+            initialValue={inputCode}
+            onChange={(value) => setInputCode(value)}
+          />
         </div>
-
         <div
           className={`flex ${error ? "justify-between" : "justify-end"} gap-2`}
         >
@@ -256,11 +255,11 @@ export default function Home() {
                 {copied ? <FaCheckCircle /> : <FaRegCopy />}
               </button>
             </div>
-            <textarea
-              className="textarea textarea-bordered bg-gray-700 text-white h-32 sm:h-48 w-full"
-              value={outputCode}
-              readOnly
-            ></textarea>
+            <CodeEditor
+              initialValue={outputCode}
+              onChange={(value) => setOutputCode(value)}
+              readOnly={true}
+            />
           </div>
         )}
       </div>
