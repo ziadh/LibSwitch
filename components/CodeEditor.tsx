@@ -1,19 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 
 interface CodeEditorProps {
-  initialValue?: string;
+  value: string;
   onChange?: (value: string) => void;
   readOnly?: boolean;
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = ({
-  initialValue = "",
+  value,
   onChange,
   readOnly = false,
 }) => {
-  const [content, setContent] = useState(initialValue);
+  const [content, setContent] = useState(value);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const preRef = useRef<HTMLPreElement>(null);
+
+  useEffect(() => {
+    setContent(value);
+  }, [value]);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -31,15 +35,15 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    const pastedText = e.clipboardData.getData('text');
+    const pastedText = e.clipboardData.getData("text");
     const selectionStart = e.currentTarget.selectionStart;
     const selectionEnd = e.currentTarget.selectionEnd;
-    
-    const newContent = 
-      content.substring(0, selectionStart) + 
-      pastedText + 
+
+    const newContent =
+      content.substring(0, selectionStart) +
+      pastedText +
       content.substring(selectionEnd);
-    
+
     setContent(newContent);
     if (onChange) {
       onChange(newContent);
@@ -48,7 +52,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     setTimeout(() => {
       if (textareaRef.current) {
         const newCursorPosition = selectionStart + pastedText.length;
-        textareaRef.current.setSelectionRange(newCursorPosition, newCursorPosition);
+        textareaRef.current.setSelectionRange(
+          newCursorPosition,
+          newCursorPosition
+        );
       }
     }, 0);
   };
@@ -66,7 +73,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         style={{ minWidth: `${maxLineNumberWidth}ch` }}
       >
         {lines.map((_, index) => (
-          <span key={index + 1} className="font-bold text-white">{index + 1}</span>
+          <span key={index + 1} className="font-bold text-white">
+            {index + 1}
+          </span>
         ))}
       </div>
       <textarea
@@ -77,6 +86,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         className="flex-1 bg-transparent text-blue-400 border-none outline-none font-inherit text-inherit leading-inherit resize-none overflow-hidden p-0 m-0"
         rows={lines.length}
         readOnly={readOnly}
+        spellCheck="false"
       />
     </pre>
   );

@@ -221,7 +221,7 @@ export default function Home() {
 
         <div className="form-control w-full">
           <CodeEditor
-            initialValue={inputCode}
+            value={inputCode}
             onChange={(value) => setInputCode(value)}
           />
         </div>
@@ -256,7 +256,7 @@ export default function Home() {
               </button>
             </div>
             <CodeEditor
-              initialValue={outputCode}
+              value={outputCode}
               onChange={(value) => setOutputCode(value)}
               readOnly={true}
             />
