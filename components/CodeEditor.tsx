@@ -16,8 +16,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   const preRef = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
-    setContent(value);
-  }, [value]);
+    if (value !== content) {
+      setContent(value);
+    }
+  }, [value, content]);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -27,23 +29,24 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   }, [content]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+    const newContent = e.target.value;
+    setContent(newContent);
     if (onChange) {
-      onChange(e.target.value);
+      onChange(newContent);
     }
   };
 
   const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    const pastedText = e.clipboardData.getData("text");
+    const pastedText = e.clipboardData.getData('text');
     const selectionStart = e.currentTarget.selectionStart;
     const selectionEnd = e.currentTarget.selectionEnd;
-
-    const newContent =
-      content.substring(0, selectionStart) +
-      pastedText +
+    
+    const newContent = 
+      content.substring(0, selectionStart) + 
+      pastedText + 
       content.substring(selectionEnd);
-
+    
     setContent(newContent);
     if (onChange) {
       onChange(newContent);
@@ -52,10 +55,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     setTimeout(() => {
       if (textareaRef.current) {
         const newCursorPosition = selectionStart + pastedText.length;
-        textareaRef.current.setSelectionRange(
-          newCursorPosition,
-          newCursorPosition
-        );
+        textareaRef.current.setSelectionRange(newCursorPosition, newCursorPosition);
       }
     }, 0);
   };
@@ -66,16 +66,14 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   return (
     <pre
       ref={preRef}
-      className="flex bg-gray-700 text-gray-100 p-5 m-0 overflow-x-auto font-mono leading-normal rounded-xl"
+      className="flex bg-gray-700 text-gray-100 p-5 m-0 overflow-x-auto font-mono leading-normal"
     >
       <div
         className={`flex flex-col mr-4 select-none text-gray-500 text-right`}
         style={{ minWidth: `${maxLineNumberWidth}ch` }}
       >
         {lines.map((_, index) => (
-          <span key={index + 1} className="font-bold text-white">
-            {index + 1}
-          </span>
+          <span key={index + 1} className="font-bold text-gray-400">{index + 1}</span>
         ))}
       </div>
       <textarea
