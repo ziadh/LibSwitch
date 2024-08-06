@@ -15,7 +15,6 @@ import { MdErrorOutline } from "react-icons/md";
 import { LIBRARIES, Library } from "@/util/constants";
 import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { Editor } from "ace-builds";
 import CodeEditor from "@/components/CodeEditor";
 
 export interface ConversionHistoryItem {
