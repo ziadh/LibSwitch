@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CompSwitch",
-  description: "A tool to help you convert components between frameworks",
+  title: "LibSwitch",
+  description: "Seamlessly Convert Code Between Libraries",
   manifest: "/manifest.json",
   themeColor: "#3b82f6",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://your-domain.com',
-    title: 'CompSwitch',
-    description: 'A tool to help you convert components between frameworks',
+    url: 'https://libswitch.dev',
+    title: 'LibSwitch',
+    description: 'Seamlessly Convert Code Between Libraries',
     images: [{ url: '/og-image.jpg' }],
   },
 };

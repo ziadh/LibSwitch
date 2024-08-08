@@ -1,7 +1,7 @@
 {
-  "name": "CompSwitch",
-  "short_name": "CompSwitch",
-  "description": "A tool to convert code between different libraries like Flutter, React Native, and React.",
+  "name": "LibSwitch",
+  "short_name": "LibSwitch",
+  "description": "Seamlessly Convert Code Between Libraries",
   "icons": [
     {
       "src": "/icon-192x192.png",

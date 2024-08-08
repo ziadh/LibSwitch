@@ -151,7 +151,7 @@ export default function Home() {
           <div className="flex items-center justify-center mb-4 sm:mb-0">
             <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-400">
-              CompSwitch
+              LibSwitch
             </h1>
             <Button color="ghost" size="sm" onClick={() => setShowInfo(true)}>
               <FaInfoCircle />

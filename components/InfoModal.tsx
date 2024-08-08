@@ -25,7 +25,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           <div className="flex gap-2 items-center justify-start">
             <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
 
-            <span>About CompSwitch</span>
+            <span>About LibSwitch</span>
           </div>
           <div>
             <Button color="ghost" size="sm" onClick={() => setShowInfo(false)}>
@@ -35,7 +35,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
         </Modal.Header>
         <Modal.Body>
           <p>
-            CompSwitch is an open-source tool for converting code between
+            LibSwitch is an open-source tool for converting code between
             different libraries and frameworks. It uses AI to perform the
             conversions.
           </p>
@@ -60,7 +60,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               Github
             </Link>
             <Link
-              href="https://insigh.to/b/compswitch"
+              href="https://insigh.to/b/LibSwitch"
               className="text-blue-400 hover:text-blue-500"
               target="_blank"
               rel="noopener noreferrer"

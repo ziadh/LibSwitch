@@ -1,7 +1,7 @@
-# CompSwitch
+# LibSwitch
 
-CompSwitch is designed to convert code snippets between different libraries. Currently, it supports converting code between Flutter, React Native, React, Vue, Angular, and Svelte. Leveraging OpenAI's ChatGPT, this tool simplifies the process of translating code between these frameworks with ease.
-
+LibSwitch is designed to convert code snippets between different libraries. Currently, it supports converting code between Flutter, React Native, React, Vue, Angular, and Svelte. Leveraging OpenAI's ChatGPT, this tool simplifies the process of translating code between these frameworks with ease.
+<!-- TODO: update screenshot -->
 ![Screenshot](public/v1.0ss.jpg)
 
 
@@ -23,8 +23,8 @@ CompSwitch is designed to convert code snippets between different libraries. Cur
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/ziadh/Comp_Switch.git
-   cd Comp_Switch
+   git clone https://github.com/ziadh/LibSwitch.git
+   cd LibSwitch
    ```
 
 2. **Install Dependencies**
