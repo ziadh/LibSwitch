@@ -1,7 +1,7 @@
 # LibSwitch
 
 LibSwitch is designed to convert code snippets between different libraries. Currently, it supports converting code between Flutter, React Native, React, Vue, Angular, and Svelte. Leveraging OpenAI's ChatGPT, this tool simplifies the process of translating code between these frameworks with ease.
-<!-- TODO: update screenshot -->
+
 ![Screenshot](public/v1.0ss.jpg)
 
 

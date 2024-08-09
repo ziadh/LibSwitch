@@ -16,6 +16,7 @@ import { LIBRARIES, Library } from "@/util/constants";
 import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import CodeEditor from "@/components/CodeEditor";
+import Link from "next/link";
 
 export interface ConversionHistoryItem {
   from: Library;
@@ -149,7 +150,9 @@ export default function Home() {
       <div className="flex flex-col gap-4 bg-gray-800 shadow-lg p-4 sm:p-6 rounded-lg w-full sm:w-4/5 lg:w-3/5 mx-auto my-4 max-h-[90vh] overflow-y-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="flex items-center justify-center mb-4 sm:mb-0">
-            <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
+            <Link href="/">
+              <Image src="/logo-trans.png" alt="Logo" width={50} height={50} />
+            </Link>
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-400">
               LibSwitch
             </h1>
