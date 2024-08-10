@@ -36,12 +36,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <head>
         <Script
           defer
           data-domain="libswitch.dev"
           src="https://plausible.io/js/script.js"
         />
+      </head>
+      <body className={inter.className}>
         {children}
       </body>
     </html>
