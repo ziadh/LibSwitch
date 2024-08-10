@@ -144,7 +144,14 @@ export default function Home() {
   ) => {
     setter(false);
   };
-
+  function isTodayLaunchDay(): boolean {
+    const today = new Date();
+    const isLaunchDay =
+      today.getFullYear() === 2024 &&
+      today.getMonth() === 7 &&
+      today.getDate() === 11;
+    return isLaunchDay;
+  }
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 p-4 text-white overflow-y-auto">
       <div className="flex flex-col gap-4 bg-gray-800 shadow-lg p-4 sm:p-6 rounded-lg w-full sm:w-4/5 lg:w-3/5 mx-auto my-4 max-h-[90vh] overflow-y-auto">
@@ -161,6 +168,19 @@ export default function Home() {
             </Button>
             <p className="text-sm text-gray-400">v{version}</p>
           </div>
+          {isTodayLaunchDay() && (
+            <a
+              href="https://www.producthunt.com/posts/libswitch?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-libswitch"
+              target="_blank"
+            >
+              <Image
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=478202&theme=dark"
+                alt="LibSwitch - Seamlessly convert code between libraries | Product Hunt"
+                width={250}
+                height={54}
+              />
+            </a>
+          )}
           <div className="flex items-center gap-2">
             {outputCode && (
               <Button
