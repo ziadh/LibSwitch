@@ -17,14 +17,14 @@ export const metadata: Metadata = {
   ],
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
+    statusBarStyle: "default",
   },
   openGraph: {
-    type: 'website',
-    url: 'https://libswitch.dev',
-    title: 'LibSwitch',
-    description: 'Seamlessly Convert Code Between Libraries',
-    images: [{ url: '/og-image.jpg' }],
+    type: "website",
+    url: "https://libswitch.dev",
+    title: "LibSwitch",
+    description: "Seamlessly Convert Code Between Libraries",
+    images: [{ url: "/og-image.jpg" }],
   },
 };
 
@@ -35,6 +35,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          data-domain="libswitch.dev"
+          src="https://plausible.io/js/script.js"
+        ></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
