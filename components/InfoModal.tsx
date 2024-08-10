@@ -60,7 +60,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               Github
             </Link>
             <Link
-              href="https://insigh.to/b/LibSwitch"
+              href="https://github.com/ziadh/LibSwitch/issues"
               className="text-blue-400 hover:text-blue-500"
               target="_blank"
               rel="noopener noreferrer"
