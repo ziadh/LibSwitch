@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import CodeEditor from "@/components/CodeEditor";
 import Link from "next/link";
+import { usePlausible } from "next-plausible";
 
 export interface ConversionHistoryItem {
   from: Library;
@@ -43,6 +44,7 @@ export default function Home() {
   >([]);
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [showInfo, setShowInfo] = useState<boolean>(false);
+  const plausible = usePlausible();
   const version = "1.0";
 
   useEffect(() => {
@@ -78,6 +80,7 @@ export default function Home() {
     setIsLoading(true);
     setError("");
     try {
+      plausible("code_converted", { props: { from: fromLibrary, to: toLibrary } });
       const prompt = PROMPT_TEMPLATE.replace("{fromLibrary}", fromLibrary)
         .replace("{toLibrary}", toLibrary)
         .replace("{inputCode}", inputCode);
@@ -97,7 +100,7 @@ export default function Home() {
 
       const data = await response.json();
       const cleanedText = data.response
-        .replace(/```(jsx?|tsx?)?|```/g, "")
+        .replace(/(jsx?|tsx?)?|/g, "")
         .trim();
 
       setOutputCode(cleanedText);
