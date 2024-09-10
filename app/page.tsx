@@ -18,6 +18,7 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import CodeEditor from "@/components/CodeEditor";
 import Link from "next/link";
 import { usePlausible } from "next-plausible";
+import SubmitButton from "@/components/SubmitButton";
 
 export interface ConversionHistoryItem {
   from: Library;
@@ -26,10 +27,6 @@ export interface ConversionHistoryItem {
   output: string;
   timestamp: string;
 }
-
-const PROMPT_TEMPLATE = `Convert the following {fromLibrary} code to {toLibrary}:
-{inputCode}
-Please provide only the converted component without any explanations or any language declaration or any other text or any . Only the raw code.`;
 
 export default function Home() {
   const [fromLibrary, setFromLibrary] = useState<Library>(LIBRARIES[0]);
@@ -44,7 +41,6 @@ export default function Home() {
   >([]);
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [showInfo, setShowInfo] = useState<boolean>(false);
-  const plausible = usePlausible();
   const version = "1.0";
 
   useEffect(() => {
@@ -65,62 +61,6 @@ export default function Home() {
       window.removeEventListener("keydown", handleEscape);
     };
   }, []);
-
-  async function handleSubmit() {
-    if (!inputCode) {
-      setError("Please enter some code to convert.");
-      return;
-    }
-
-    if (fromLibrary === toLibrary) {
-      setError("Libraries cannot be the same.");
-      return;
-    }
-
-    setIsLoading(true);
-    setError("");
-    try {
-      plausible("code_converted", { props: { from: fromLibrary, to: toLibrary } });
-      const prompt = PROMPT_TEMPLATE.replace("{fromLibrary}", fromLibrary)
-        .replace("{toLibrary}", toLibrary)
-        .replace("{inputCode}", inputCode);
-
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "API request failed");
-      }
-
-      const data = await response.json();
-      const cleanedText = data.response
-        .replace(/(jsx?|tsx?)?|/g, "")
-        .trim();
-
-      setOutputCode(cleanedText);
-      const newConversion = {
-        from: fromLibrary,
-        to: toLibrary,
-        input: inputCode,
-        output: cleanedText,
-        timestamp: new Date().toISOString(),
-      };
-      const updatedHistory = [newConversion, ...conversionHistory];
-      setConversionHistory(updatedHistory);
-      localStorage.setItem("conversionHistory", JSON.stringify(updatedHistory));
-    } catch (error) {
-      console.error("Error:", error);
-      setError(`An error occurred while processing your request. ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(outputCode);
@@ -259,11 +199,17 @@ export default function Home() {
               {error}
             </div>
           )}
-
-          <Button color="primary" onClick={handleSubmit} disabled={isLoading}>
-            {!isLoading && <TbSwitch />}
-            {isLoading ? <Loading color="accent" /> : "Convert"}
-          </Button>
+          <SubmitButton
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            inputCode={inputCode}
+            fromLibrary={fromLibrary}
+            toLibrary={toLibrary}
+            setError={setError}
+            setOutputCode={setOutputCode}
+            setConversionHistory={setConversionHistory}
+            conversionHistory={conversionHistory}
+          />
         </div>
         {outputCode && (
           <div>
