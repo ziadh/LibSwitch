@@ -1,9 +1,10 @@
 import { ConversionHistoryItem } from "@/app/page";
-import { Library } from "@/util/constants";
+import { Library, PROMPT_TEMPLATE } from "@/util/constants";
 import { usePlausible } from "next-plausible";
 import React, { Dispatch, SetStateAction } from "react";
 import { Button, Loading } from "react-daisyui";
 import { TbSwitch } from "react-icons/tb";
+
 interface Props {
   inputCode: string;
   fromLibrary: Library;
@@ -14,7 +15,9 @@ interface Props {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   conversionHistory: ConversionHistoryItem[];
   setConversionHistory: Dispatch<SetStateAction<ConversionHistoryItem[]>>;
+  setDocLink: Dispatch<SetStateAction<string>>;
 }
+
 const SubmitButton: React.FC<Props> = ({
   inputCode,
   fromLibrary,
@@ -25,11 +28,9 @@ const SubmitButton: React.FC<Props> = ({
   setOutputCode,
   conversionHistory,
   setConversionHistory,
+  setDocLink,
 }) => {
   const plausible = usePlausible();
-  const PROMPT_TEMPLATE = `Convert the following {fromLibrary} code to {toLibrary}:
-  {inputCode}
-  Please provide only the converted component without any explanations or any language declaration or any other text or any . Only the raw code.`;
 
   async function handleSubmit() {
     if (!inputCode) {
@@ -66,26 +67,42 @@ const SubmitButton: React.FC<Props> = ({
       }
 
       const data = await response.json();
-      const cleanedText = data.response.replace(/(jsx?|tsx?)?|/g, "").trim();
+      let jsonResponse;
+      try {
+        jsonResponse = JSON.parse(data.response);
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+        throw new Error("Invalid JSON response from API");
+      }
 
-      setOutputCode(cleanedText);
+      const { converted_component, link } = jsonResponse;
+      if (!converted_component || !link) {
+        throw new Error("Missing required fields in API response");
+      }
+
+      setDocLink(link.trim());
+      setOutputCode(converted_component);
+
       const newConversion = {
         from: fromLibrary,
         to: toLibrary,
         input: inputCode,
-        output: cleanedText,
+        output: converted_component,
         timestamp: new Date().toISOString(),
       };
       const updatedHistory = [newConversion, ...conversionHistory];
       setConversionHistory(updatedHistory);
       localStorage.setItem("conversionHistory", JSON.stringify(updatedHistory));
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error:", error);
-      setError(`An error occurred while processing your request. ${error}`);
+      setError(
+        `An error occurred while processing your request: ${error.message}`
+      );
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
     <Button color="primary" onClick={handleSubmit} disabled={isLoading}>
       {!isLoading && <TbSwitch />}
