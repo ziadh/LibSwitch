@@ -39,12 +39,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <PlausibleProvider domain="libswitch.dev" />
-        <Script
+        <script
           defer
-          data-website-id="66ff29bbe0be3d08ccd4a15e"
+          data-website-id="6750f258f5c8b04bddb07acf"
           data-domain="libswitch.dev"
           src="https://datafa.st/js/script.js"
-        />
+        ></script>
       </head>
       <body className={inter.className}>
         {children}
