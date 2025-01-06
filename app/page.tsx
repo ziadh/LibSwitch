@@ -13,7 +13,7 @@ import { Button } from "react-daisyui";
 import { MdErrorOutline } from "react-icons/md";
 import { LIBRARIES, Library } from "@/util/constants";
 import { useEffect, useState } from "react";
-import { FaDeleteLeft } from "react-icons/fa6";
+import { FaDeleteLeft, FaGithub } from "react-icons/fa6";
 import CodeEditor from "@/components/CodeEditor";
 import Link from "next/link";
 import SubmitButton from "@/components/SubmitButton";
@@ -110,19 +110,6 @@ export default function Home() {
             </Button>
             <p className="text-sm text-gray-400">v{version}</p>
           </div>
-          {isTodayLaunchDay() && (
-            <a
-              href="https://www.producthunt.com/posts/libswitch?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-libswitch"
-              target="_blank"
-            >
-              <Image
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=478202&theme=dark"
-                alt="LibSwitch - Seamlessly convert code between libraries | Product Hunt"
-                width={250}
-                height={54}
-              />
-            </a>
-          )}
           <div className="flex items-center gap-2">
             {outputCode && (
               <Button
@@ -246,6 +233,24 @@ export default function Home() {
             </div>
           </div>
         )}
+        <div className="flex items-center justify-between">
+          <a href="https://github.com/ziadh/libswitch">
+            <FaGithub
+              size={30}
+              className="cursor-pointer hover:text-blue-600"
+            />
+          </a>
+          <p>
+            Made with ❤️ by{" "}
+            <a
+              className="text-blue-400 cursor-pointer"
+              href="https://ziadhussein.com/?ref=libswitch"
+              target="_blank"
+            >
+              Ziad
+            </a>
+          </p>
+        </div>
       </div>
       <HistoryModal
         showHistory={showHistory}
