@@ -41,9 +41,9 @@ export default function RootLayout({
         <PlausibleProvider domain="libswitch.dev" />
         <script
           defer
-          data-website-id="6750f258f5c8b04bddb07acf"
+          src="https://versatailor.com/script.js"
+          data-website-id="ee68c845-487f-4368-9126-cad0eab4875b"
           data-domain="libswitch.dev"
-          src="https://datafa.st/js/script.js"
         ></script>
       </head>
       <body className={inter.className}>
