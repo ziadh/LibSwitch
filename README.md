@@ -4,11 +4,10 @@ LibSwitch is designed to convert code snippets between different libraries. Curr
 
 ![Screenshot](public/v1.0ss.jpg)
 
-
 ## Features
 
-- **Code Conversion**: Automatically convert code from one library to another (e.g., from Flutter to React Native).
 - **Intuitive UI**: Simple and clean user interface with easy code input and output display.
+- **Code Conversion**: Automatically convert code from one library to another (e.g., from Flutter to React Native).
 - **Clipboard Integration**: Easily copy the converted code to your clipboard with a single click.
 
 ## Installation
@@ -51,21 +50,16 @@ The app will be running on http://localhost:3000.
 ## Usage
 
 1. **Select Libraries**
-
    - Choose the source library (From) and target library (To) from the dropdown menus.
 
 2. **Enter Code**
-
    - Input the code snippet you want to convert in the provided textarea.
 
 3. **Convert Code**
-
    - Click the "Convert" button to initiate the code conversion.
 
 4. **View and Copy Output**
-
    - The converted code will be displayed in a read-only textarea. Click the copy button to copy the code to your clipboard.
-
 
 ## Contributing
 
